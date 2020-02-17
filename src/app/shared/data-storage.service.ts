@@ -19,18 +19,18 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-
     return this.http
       .get<Recipe[]>('https://recipe-app-2b659.firebaseio.com/recipes.json')
       .pipe(
         map(recipes => {
           return recipes.map(recipe => {
             return { ...recipe, ingredients: recipe.ingredients ? recipe.ingredients : [] };
-          });
+          }
+          );
         }),
         tap(recipes => {
           this.recipeService.setRecipes(recipes);
         })
-      )
+      );
   }
 }
