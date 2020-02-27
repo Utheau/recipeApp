@@ -16,7 +16,7 @@ export class RecipeResolverService implements Resolve<Recipe[]> {
   ) { }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    this.store.dispatch(new RecipeActions.FetchRecipes());
+    this.store.dispatch(new RecipeActions.FetchRecipes());   
     return this.actions$.pipe(ofType(RecipeActions.SET_RECIPES), take(1));
   }
 }

@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import * as fromRoot from '../../store/app.reducer';
+import * as RecipeActions from '../store/recipe.actions';
 
 import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
@@ -33,9 +34,9 @@ export class RecipeDetailComponent implements OnInit {
               return index === this.id;
             });
           }))
-          .subscribe(recipe => {
-            this.recipe = recipe;
-          });
+            .subscribe(recipe => {
+              this.recipe = recipe;
+            });
         }
       );
   }
@@ -50,7 +51,8 @@ export class RecipeDetailComponent implements OnInit {
   }
 
   onDeleteRecipe() {
-    this.recipeService.deleteRecipe(this.id);
+    //this.recipeService.deleteRecipe(this.id);
+    this.store.dispatch(new RecipeActions.DeleteRecipe(this.id));
     this.router.navigate(['/recipes']);
   }
 
