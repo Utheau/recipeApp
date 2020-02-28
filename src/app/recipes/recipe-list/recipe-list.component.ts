@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import * as fromRoot from '../../store/app.reducer';
 
 import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -17,7 +16,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
   recipes: Recipe[];
   subscription: Subscription;
 
-  constructor(private recipeService: RecipeService,
+  constructor(
     private router: Router,
     private route: ActivatedRoute,
     private store: Store<fromRoot.AppState>
@@ -42,3 +41,4 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 }
+ 
